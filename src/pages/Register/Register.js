@@ -4,7 +4,8 @@ import TextField from '@material-ui/core/TextField';
 
 export const Register = (props) => {
 
-    const [name, setName] = useState('');
+    const [displayName, setDisplayName] = useState('');
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -16,17 +17,18 @@ export const Register = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password.localeCompare(confirmPassword) === 0) {
-            const student = { name, email, password }
+            const student = { username, displayName, email, password }
             console.log(student)
 
-            fetch("http://localhost:8080/student/add", {
+            fetch("/api/1.0/users", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(student)
             }).then(() => {
                 console.log("New Student added");
                 setShowError(false);
-                setName('');
+                setDisplayName('');
+                setUsername('');
                 setEmail('');
                 setPassword('');
                 setConfirmPassword('');
@@ -38,7 +40,8 @@ export const Register = (props) => {
                     setShowError(true);
                 }
                 console.log(err);
-                setName('');
+                setDisplayName('');
+                setUsername('');
                 setEmail('');
                 setPassword('');
                 setConfirmPassword('');
@@ -56,7 +59,8 @@ export const Register = (props) => {
             <div className="auth-form-container">
                 <h2>Register</h2>
                 <form className="register-form" onSubmit={handleSubmit}>
-                    <TextField value={name} name="name" onChange={(e) => setName(e.target.value)} id="name" label="Full Name" /><br />
+                    <TextField value={displayName} name="displayName" onChange={(e) => setDisplayName(e.target.value)} id="displayName" label="Full Name" /><br />
+                    <TextField value={username} name="username" onChange={(e) => setUsername(e.target.value)} id="username" label="Username" /><br />
                     <TextField value={email} onChange={(e) => setEmail(e.target.value)} type="email" label="Email" id="email" name="email" /><br />
                     <TextField value={password} onChange={(e) => setPassword(e.target.value)} type="password" label="Password" id="password" name="password" /><br />
                     <TextField value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} type="password" label="Confirm Password" id="confirmPassword" name="confirmPassword" /><br />
