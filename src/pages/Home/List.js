@@ -6,6 +6,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { colors } from '@mui/material';
 
 function List(props) {
     //create a new array by filtering the original array
@@ -41,18 +42,30 @@ function List(props) {
     });
 
 
+    //If can't find a university/city matching the user input
+    if (filteredData.length == 0) {
+
+
+        return (
+
+            <h1>Nothing found</h1>
+        )
+    }
+
+    
     return (
         <ul>
+
+
+            
             {filteredData.map((item) => (
-                <Card sx={{ minWidth: 275 }}>
+                <Card sx={{ width: "33%", marginBottom: "1%", backgroundColor: "#282F44"}}>
                     <CardContent>
-                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            Word of the Day
-                        </Typography>
-                        <Typography variant="h5" component="div">
+                        
+                        <Typography variant="h5" color="white" component="div" style={{fontWeight: "bold"}}>
                             {item.name}
                         </Typography>
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        <Typography sx={{ mb: 1.5 }} color="white">
                             {item.cities.join(", ")} <br />
                             {item.province}
                         </Typography>
@@ -62,7 +75,9 @@ function List(props) {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small">Learn More</Button>
+                        <Button size="small"
+                        style={{color: "#BA2C73"}}                     
+                        >Learn More</Button>
                     </CardActions>
                 </Card>
             ))}

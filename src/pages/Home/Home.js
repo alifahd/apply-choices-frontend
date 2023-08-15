@@ -34,13 +34,25 @@ export const Home = (props) => {
   };
 
   return (
-    <div>
+    <div  style={{backgroundColor: "#191D32"}} >
+
+    
+
       <TextField
+       
+        style={{backgroundColor: "white", borderRadius: "20px"}} 
         id="universityNameInput"
         onChange={inputHandler}
-        variant="outlined"
-        label="Search for a University/City"
-        sx={{ marginTop: 10, display: "inline-block" }}
+        variant="standard"
+        label="/n  Search for a University/City"
+        sx={{
+          marginTop: 10,
+          width: "25%",
+          marginLeft: "33%"
+        }}
+        inputProps={{
+          style: { color: "#DE2F1" },
+        }}
       />
 
       <Box
@@ -60,6 +72,7 @@ export const Home = (props) => {
             label="Select a Province"
             onChange={inputHandler2}
             multiple
+            style={{backgroundColor: "#D8C3A5"}} 
           >
             <MenuItem value={"alberta"}>Alberta</MenuItem>
             <MenuItem value={"british columbia"}>British Columbia</MenuItem>
